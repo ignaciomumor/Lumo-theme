@@ -1,0 +1,52 @@
+<main class="pdp" style="padding-bottom:60px">
+  <section class="sec">
+    <div class="wrap">
+      <div class="page-eyebrow">{{ section.settings.eyebrow }}</div>
+      <h1 class="page-title">{{ section.settings.title }}</h1>
+      <div class="lead rte">{{ section.settings.lead }}</div>
+      <div class="contact-grid" style="margin-top:30px">
+        <div class="cinfo">
+          {% if section.settings.email != blank %}<div class="block"><div class="lbl">Correo</div><div class="val sel" style="user-select:all">{{ section.settings.email }}</div></div>{% endif %}
+          {% if section.settings.instagram != blank %}<div class="block"><div class="lbl">Instagram</div><div class="val"><a href="{{ section.settings.instagram }}" target="_blank" rel="noopener">@lumo.cl</a></div></div>{% endif %}
+          {% if section.settings.whatsapp != blank %}<div class="block"><div class="lbl">WhatsApp</div><div class="val">{{ section.settings.whatsapp }}</div></div>{% endif %}
+          <div class="block"><div class="lbl">Dónde estamos</div><div class="val">Santiago, Chile</div></div>
+        </div>
+        <div>
+          {% form 'contact', id: 'lumo-contact' %}
+            {% if form.posted_successfully? %}<p class="form-ok">✦ ¡Gracias! Te responderemos pronto.</p>{% endif %}
+            <div class="cform">
+              <label>Nombre<input type="text" name="contact[name]" required></label>
+              <label>Correo<input type="email" name="contact[email]" required></label>
+              <label>Mensaje<textarea name="contact[body]" rows="5" required></textarea></label>
+              <button class="btn btn-blue" type="submit" style="align-self:flex-start">Enviar mensaje</button>
+            </div>
+          {% endform %}
+          <div class="faq">
+            <h2 style="font-family:var(--font-display);font-weight:800;font-size:24px;margin:30px 0 6px">Preguntas frecuentes</h2>
+            {% for block in section.blocks %}
+              <details{% if forloop.first %} open{% endif %}><summary>{{ block.settings.q }}</summary><div class="b">{{ block.settings.a }}</div></details>
+            {% endfor %}
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+{% schema %}
+{
+  "name": "LUMO · Contacto",
+  "settings": [
+    {"type": "text", "id": "eyebrow", "label": "Rótulo", "default": "Hablemos"},
+    {"type": "text", "id": "title", "label": "Título", "default": "Contacto"},
+    {"type": "richtext", "id": "lead", "label": "Intro", "default": "<p>¿Una duda, un pedido especial o una colaboración? Escríbenos y te respondemos a la brevedad.</p>"},
+    {"type": "text", "id": "email", "label": "Correo", "default": "hola@lumoestudio.cl"},
+    {"type": "url", "id": "instagram", "label": "Instagram", "default": "https://instagram.com/lumo.cl"},
+    {"type": "text", "id": "whatsapp", "label": "WhatsApp"}
+  ],
+  "blocks": [{"type": "faq", "name": "Pregunta", "settings": [
+    {"type": "text", "id": "q", "label": "Pregunta", "default": "¿Hacen despacho?"},
+    {"type": "textarea", "id": "a", "label": "Respuesta", "default": "Sí, despachamos a todo Chile en 7–10 días hábiles."}
+  ]}],
+  "presets": [{"name": "LUMO · Contacto", "blocks": [{"type": "faq"}, {"type": "faq"}]}]
+}
+{% endschema %}

@@ -1,0 +1,17 @@
+{%- liquid
+  assign n = name | downcase | strip
+  assign hex = '#cccccc'
+  case n
+    when 'cobalto' assign hex = '#2943F6'
+    when 'azul' assign hex = '#2943F6'
+    when 'hueso' assign hex = '#ECE3CC'
+    when 'blanco' assign hex = '#FFFFFF'
+    when 'mostaza' assign hex = '#E0A423'
+    when 'amarillo' assign hex = '#F7C53D'
+    when 'rojo' assign hex = '#DE3B26'
+    when 'verde' assign hex = '#2EA86A'
+    when 'naranja' assign hex = '#E8641E'
+    when 'rosa' assign hex = '#F492B6'
+    when 'negro' assign hex = '#1A1A1A'
+  endcase
+-%}{{ hex }}

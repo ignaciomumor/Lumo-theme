@@ -1,0 +1,43 @@
+<main class="pdp" style="padding-bottom:0">
+  <section class="sec">
+    <div class="wrap" style="max-width:860px">
+      <div class="page-eyebrow">{{ section.settings.eyebrow }}</div>
+      <h1 class="page-title">{{ section.settings.title }}</h1>
+      <div class="lead rte">{{ section.settings.lead }}</div>
+      {% if section.settings.image %}<div class="big-photo">{% if section.settings.image %}<img src="{{ section.settings.image | image_url: width: 1600 }}" alt="">{% endif %}</div>{% else %}<div class="big-photo grid-tex"><span class="ph-note">Foto del taller — por definir</span></div>{% endif %}
+    </div>
+  </section>
+  <section class="sec how">
+    <div class="wrap">
+      <div class="sec-head"><div><h2>{{ section.settings.pillars_title }}</h2></div></div>
+      <div class="steps">
+        {% for block in section.blocks %}
+          <div class="step"><div class="ico"><svg width="30" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2"><path d="M12 3v18M3 12h18" stroke-linecap="round"/></svg></div><h3>{{ block.settings.title }}</h3><p>{{ block.settings.text }}</p></div>
+        {% endfor %}
+      </div>
+    </div>
+  </section>
+  <section class="cta-band">
+    <div class="wrap"><h2>{{ section.settings.cta_heading }}</h2><a class="btn btn-ghost" href="{{ section.settings.cta_link }}">{{ section.settings.cta_label }}</a></div>
+  </section>
+</main>
+{% schema %}
+{
+  "name": "LUMO · Estudio",
+  "settings": [
+    {"type": "text", "id": "eyebrow", "label": "Rótulo", "default": "El estudio"},
+    {"type": "text", "id": "title", "label": "Título", "default": "Diseño que se enciende"},
+    {"type": "richtext", "id": "lead", "label": "Intro", "default": "<p>LUMO es un estudio de diseño en Santiago dedicado a lámparas y objetos de hogar impresos en 3D.</p>"},
+    {"type": "image_picker", "id": "image", "label": "Imagen grande"},
+    {"type": "text", "id": "pillars_title", "label": "Título pilares", "default": "Lo que nos importa"},
+    {"type": "text", "id": "cta_heading", "label": "CTA título", "default": "Lleva un pedazo de LUMO a tu casa"},
+    {"type": "text", "id": "cta_label", "label": "CTA botón", "default": "Explora el catálogo →"},
+    {"type": "url", "id": "cta_link", "label": "CTA enlace"}
+  ],
+  "blocks": [{"type": "pilar", "name": "Pilar", "settings": [
+    {"type": "text", "id": "title", "label": "Título", "default": "Diseño propio"},
+    {"type": "textarea", "id": "text", "label": "Texto", "default": "Cada modelo es nuestro, pensado desde la forma."}
+  ]}],
+  "presets": [{"name": "LUMO · Estudio", "blocks": [{"type": "pilar"}, {"type": "pilar"}, {"type": "pilar"}]}]
+}
+{% endschema %}

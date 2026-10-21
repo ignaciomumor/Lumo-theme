@@ -1,0 +1,27 @@
+<section class="sec catsec grid-tex on">
+  <div class="wrap">
+    <div class="sec-head"><div><h2>{{ section.settings.heading }}</h2></div>{% if section.settings.note != blank %}<div class="note">{{ section.settings.note }}</div>{% endif %}</div>
+    <div class="cat">
+      {% for block in section.blocks %}
+        {% assign bi = forloop.index | modulo: 4 | plus: 1 %}
+        <a class="catbar b{{ bi }}" href="{{ block.settings.link }}"><span class="idx">({{ forloop.index }})</span><span class="cn">{{ block.settings.title }}</span>{% if block.settings.desc != blank %}<span class="cd">{{ block.settings.desc }}</span>{% endif %}<span class="arw">→</span></a>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+{% schema %}
+{
+  "name": "LUMO · Categorías",
+  "settings": [
+    {"type": "text", "id": "heading", "label": "Título", "default": "Categorías"},
+    {"type": "text", "id": "note", "label": "Nota", "default": "Explora por tipo de objeto"}
+  ],
+  "blocks": [{"type": "categoria", "name": "Categoría", "settings": [
+    {"type": "text", "id": "title", "label": "Nombre", "default": "Lámparas"},
+    {"type": "text", "id": "desc", "label": "Descripción"},
+    {"type": "url", "id": "link", "label": "Enlace"}
+  ]}],
+  "max_blocks": 6,
+  "presets": [{"name": "LUMO · Categorías", "blocks": [{"type": "categoria"}, {"type": "categoria"}, {"type": "categoria"}]}]
+}
+{% endschema %}

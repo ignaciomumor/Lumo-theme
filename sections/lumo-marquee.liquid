@@ -1,0 +1,13 @@
+<div class="marquee" aria-hidden="true">
+  <div class="mq-track">
+    {% for n in (1..2) %}{% for block in section.blocks %}<span>{{ block.settings.text }}</span><span class="sep">✦</span>{% endfor %}{% endfor %}
+  </div>
+</div>
+{% schema %}
+{
+  "name": "LUMO · Marquee",
+  "blocks": [{"type": "frase", "name": "Frase", "settings": [{"type": "text", "id": "text", "label": "Frase", "default": "Prende, brilla, repite"}]}],
+  "max_blocks": 8,
+  "presets": [{"name": "LUMO · Marquee", "blocks": [{"type": "frase"}]}]
+}
+{% endschema %}

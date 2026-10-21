@@ -1,0 +1,40 @@
+{%- liquid
+  assign p = product
+  assign on_sale = false
+  if p.compare_at_price > p.price and p.compare_at_price > 0
+    assign on_sale = true
+  endif
+  assign color_opt = null
+  for opt in p.options_with_values
+    assign dn = opt.name | downcase
+    if dn contains 'color'
+      assign color_opt = opt
+    endif
+  endfor
+-%}
+<article class="card">
+  <div class="ph">
+    {% if on_sale %}<span class="tag-corner oferta">Oferta</span>{% endif %}
+    <a class="imglink" href="{{ p.url }}" aria-label="{{ p.title | escape }}">
+      {% if p.featured_image %}
+        <img id="img-{{ p.id }}" src="{{ p.featured_image | image_url: width: 640 }}" alt="{{ p.featured_image.alt | escape }}" loading="lazy" width="640" height="640" style="width:100%;height:100%;object-fit:cover">
+      {% else %}
+        <span class="mono" style="opacity:.5;font-size:11px">Sin foto</span>
+      {% endif %}
+    </a>
+  </div>
+  <div class="meta">
+    <a class="nm-link" href="{{ p.url }}"><span class="nm">{{ p.title }}</span></a>
+    {% if p.type != blank %}<div class="desc">{{ p.type }}</div>{% endif %}
+    <div class="price-row"><span class="price">{{ p.price | money }}</span>{% if on_sale %}<span class="compare">{{ p.compare_at_price | money }}</span>{% endif %}</div>
+    {% if color_opt %}
+      <div class="swatches">
+        {% for val in color_opt.values %}
+          {%- assign vimg = '' -%}
+          {%- for v in p.variants -%}{%- if v.option1 == val and v.image -%}{%- assign vimg = v.image | image_url: width: 640 -%}{%- break -%}{%- endif -%}{%- endfor -%}
+          <button class="sw" type="button" style="background:{% render 'lumo-color', name: val %}" data-img="{{ vimg }}" data-target="img-{{ p.id }}" aria-label="{{ val | escape }}"></button>
+        {% endfor %}
+      </div>
+    {% endif %}
+  </div>
+</article>

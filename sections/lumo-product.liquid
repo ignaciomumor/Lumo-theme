@@ -1,0 +1,89 @@
+{%- liquid
+  assign p = product
+  assign cur = p.selected_or_first_available_variant
+  assign on_sale = false
+  if p.compare_at_price > p.price and p.compare_at_price > 0
+    assign on_sale = true
+  endif
+  assign color_opt = null
+  for opt in p.options_with_values
+    if opt.name | downcase contains 'color'
+      assign color_opt = opt
+    endif
+  endfor
+-%}
+<section class="pdp">
+  <div class="wrap">
+    <a class="back" href="{{ routes.all_products_collection_url }}">← Volver al catálogo</a>
+    <div class="pdp-grid">
+      <div>
+        <div class="pdp-img">
+          {% if on_sale %}<span class="pdp-badge">Oferta</span>{% endif %}
+          {% if cur.image or p.featured_image %}
+            <img id="pdp-img" src="{{ cur.image | default: p.featured_image | image_url: width: 1100 }}" alt="{{ p.title | escape }}" width="1100" height="1100">
+          {% else %}
+            <span class="mono" style="opacity:.5">Sube una foto por color en el panel</span>
+          {% endif %}
+        </div>
+      </div>
+      <div>
+        <div class="pdp-eyebrow">{{ p.type }}{% if p.vendor != blank %} · {{ p.vendor }}{% endif %}</div>
+        <h1>{{ p.title }}</h1>
+        <div class="price-row">
+          <span class="price" id="pdp-price">{{ cur.price | money }}</span>
+          {% if on_sale %}<span class="compare">{{ p.compare_at_price | money }}</span><span class="off">Oferta</span>{% endif %}
+        </div>
+        {% if p.description != blank %}<div class="desc">{{ p.description | strip_html | truncatewords: 40 }}</div>{% endif %}
+
+        {% form 'product', p, id: 'lumo-form' %}
+          {% if color_opt %}
+            <p class="opt-label">Color: <b id="pdp-color">{{ cur.option1 }}</b></p>
+            <div class="swatches" id="pdp-sw">
+              {% for val in color_opt.values %}
+                {%- assign vid = '' -%}{%- assign vimg = '' -%}{%- assign vprice = '' -%}
+                {%- for v in p.variants -%}{%- if v.option1 == val -%}{%- assign vid = v.id -%}{%- assign vprice = v.price | money -%}{%- if v.image -%}{%- assign vimg = v.image | image_url: width: 1100 -%}{%- endif -%}{%- break -%}{%- endif -%}{%- endfor -%}
+                <button class="sw" type="button" data-vid="{{ vid }}" data-val="{{ val | escape }}" data-img="{{ vimg }}" data-price="{{ vprice }}" style="background:{% render 'lumo-color', name: val %}" aria-label="{{ val | escape }}"></button>
+              {% endfor %}
+            </div>
+          {% endif %}
+          <input type="hidden" name="id" id="pdp-variant" value="{{ cur.id }}">
+          <div class="buy">
+            <div class="qty">
+              <button type="button" id="qminus" aria-label="Quitar">−</button>
+              <input type="number" name="quantity" id="qnum" value="1" min="1" aria-label="Cantidad">
+              <button type="button" id="qplus" aria-label="Agregar">+</button>
+            </div>
+            <button type="submit" name="add" class="btn btn-blue addcart">Añadir al carro</button>
+          </div>
+        {% endform %}
+
+        <div class="acc">
+          {% if p.description != blank %}<details open><summary>Descripción</summary><div class="acc-body">{{ p.description }}</div></details>{% endif %}
+          <details><summary>Despacho</summary><div class="acc-body">Despacho a todo Chile en 7–10 días hábiles. Cada pieza se produce en nuestro taller en Santiago.</div></details>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<script>
+(function(){
+  var sw=document.getElementById('pdp-sw');
+  var vinput=document.getElementById('pdp-variant'), img=document.getElementById('pdp-img'), price=document.getElementById('pdp-price'), cname=document.getElementById('pdp-color');
+  if(sw){
+    sw.addEventListener('click',function(e){var b=e.target.closest('.sw');if(!b)return;
+      sw.querySelectorAll('.sw').forEach(function(x){x.classList.remove('active');});b.classList.add('active');
+      if(b.dataset.vid)vinput.value=b.dataset.vid;
+      if(b.dataset.img&&img)img.src=b.dataset.img;
+      if(cname)cname.textContent=b.dataset.val;
+      if(price&&b.dataset.price)price.textContent=b.dataset.price;
+    });
+    var cur=sw.querySelector('.sw[data-vid="'+vinput.value+'"]')||sw.querySelector('.sw');if(cur)cur.classList.add('active');
+  }
+  var q=document.getElementById('qnum');
+  if(q){document.getElementById('qminus').addEventListener('click',function(){q.value=Math.max(1,(parseInt(q.value)||1)-1);});
+  document.getElementById('qplus').addEventListener('click',function(){q.value=(parseInt(q.value)||1)+1;});}
+})();
+</script>
+{% schema %}
+{ "name": "LUMO · Producto", "settings": [], "presets": [{"name": "LUMO · Producto"}] }
+{% endschema %}

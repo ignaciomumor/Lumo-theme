@@ -1,0 +1,27 @@
+<section class="sec videosec">
+  <div class="wrap">
+    <div class="sec-head"><div><h2>{{ section.settings.heading }}</h2></div>{% if section.settings.note != blank %}<div class="note">{{ section.settings.note }}</div>{% endif %}</div>
+    <div class="video-ph">
+      {% if section.settings.video != blank %}
+        {{ section.settings.video | video_tag: controls: true, image_size: '1100x' }}
+      {% elsif section.settings.video_url != blank %}
+        <div style="position:absolute;inset:0">{{ section.settings.video_url | external_video_tag }}</div>
+      {% else %}
+        <button class="play" type="button" aria-label="Video (próximamente)"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z" fill="#fff"/></svg></button>
+        <span class="ph-note">Video — próximamente</span>
+      {% endif %}
+    </div>
+  </div>
+</section>
+{% schema %}
+{
+  "name": "LUMO · Video",
+  "settings": [
+    {"type": "text", "id": "heading", "label": "Título", "default": "LUMO en movimiento"},
+    {"type": "text", "id": "note", "label": "Nota", "default": "Espacio para video"},
+    {"type": "video", "id": "video", "label": "Video (subido a Shopify)"},
+    {"type": "video_url", "id": "video_url", "label": "O enlace de YouTube/Vimeo", "accept": ["youtube", "vimeo"]}
+  ],
+  "presets": [{"name": "LUMO · Video"}]
+}
+{% endschema %}

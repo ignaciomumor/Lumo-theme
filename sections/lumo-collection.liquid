@@ -1,0 +1,26 @@
+<section class="sec">
+  <div class="wrap">
+    <div class="catalog-head" style="padding-bottom:16px">
+      <h1 class="cat-title">{{ collection.title }}</h1>
+      {% if collection.description != blank %}<div class="cat-sub">{{ collection.description }}</div>{% endif %}
+      <div class="filters">
+        <div class="chips">
+          <a class="chip{% if collection.handle == 'all' %} active{% endif %}" href="{{ routes.all_products_collection_url }}">Todos</a>
+          <a class="chip{% if collection.handle == 'lamparas' %} active{% endif %}" href="/collections/lamparas">Lámparas</a>
+          <a class="chip{% if collection.handle == 'relojes' %} active{% endif %}" href="/collections/relojes">Relojes</a>
+          <a class="chip{% if collection.handle == 'accesorios' %} active{% endif %}" href="/collections/accesorios">Accesorios</a>
+        </div>
+        <span class="count">{{ collection.products_count }} productos</span>
+      </div>
+    </div>
+    {% paginate collection.products by 16 %}
+      <div class="cards grid-wrap">
+        {% for product in collection.products %}{% render 'lumo-card', product: product %}{% else %}<p class="mono" style="opacity:.6">No hay productos en esta colección todavía.</p>{% endfor %}
+      </div>
+      {% if paginate.pages > 1 %}<div class="loadmore">{{ paginate | default_pagination }}</div>{% endif %}
+    {% endpaginate %}
+  </div>
+</section>
+{% schema %}
+{ "name": "LUMO · Colección", "settings": [], "presets": [{"name": "LUMO · Colección"}] }
+{% endschema %}

@@ -1,0 +1,28 @@
+<section class="sec">
+  <div class="wrap">
+    <div class="sec-head">
+      <div><h2>{{ section.settings.heading }}</h2></div>
+      {% if section.settings.note != blank %}<div class="note">{{ section.settings.note }}</div>{% endif %}
+    </div>
+    <div class="cards">
+      {% assign col = collections[section.settings.collection] %}
+      {% if col and col.products.size > 0 %}
+        {% for product in col.products limit: section.settings.limit %}{% render 'lumo-card', product: product %}{% endfor %}
+      {% else %}
+        <p class="mono" style="opacity:.6">Elige una colección en el panel para mostrar productos aquí.</p>
+      {% endif %}
+    </div>
+  </div>
+</section>
+{% schema %}
+{
+  "name": "LUMO · Destacados",
+  "settings": [
+    {"type": "text", "id": "heading", "label": "Título", "default": "Destacados"},
+    {"type": "text", "id": "note", "label": "Nota (derecha)", "default": "Despacho a todo Chile · 7–10 días hábiles"},
+    {"type": "collection", "id": "collection", "label": "Colección a mostrar"},
+    {"type": "range", "id": "limit", "label": "Cantidad de productos", "min": 2, "max": 12, "step": 1, "default": 4}
+  ],
+  "presets": [{"name": "LUMO · Destacados"}]
+}
+{% endschema %}

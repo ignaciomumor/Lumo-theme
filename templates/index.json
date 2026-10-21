@@ -1,0 +1,11 @@
+{
+  "sections": {
+    "hero": {"type": "lumo-hero", "settings": {"lead": "invertir en deco es", "highlight": "terapia", "cta_label": "Ver catálogo →", "cta_link": "shopify://collections/all"}},
+    "marquee": {"type": "lumo-marquee", "blocks": {"m1": {"type": "frase", "settings": {"text": "Prende, brilla, repite"}}, "m2": {"type": "frase", "settings": {"text": "Tu casa ondera, todo que ver"}}, "m3": {"type": "frase", "settings": {"text": "Decora sin pedir permiso"}}, "m4": {"type": "frase", "settings": {"text": "No combina con todo, combina contigo"}}}, "block_order": ["m1", "m2", "m3", "m4"]},
+    "featured": {"type": "lumo-featured", "settings": {"heading": "Destacados", "note": "Despacho a todo Chile · 7–10 días hábiles", "collection": "lamparas", "limit": 4}},
+    "imagetext": {"type": "lumo-image-text", "settings": {}},
+    "categories": {"type": "lumo-categories", "blocks": {"c1": {"type": "categoria", "settings": {"title": "Lámparas", "desc": "Luz de diseño", "link": "shopify://collections/lamparas"}}, "c2": {"type": "categoria", "settings": {"title": "Relojes", "desc": "Relojes de pared", "link": "shopify://collections/relojes"}}, "c3": {"type": "categoria", "settings": {"title": "Accesorios", "desc": "Objetos para tu espacio", "link": "shopify://collections/accesorios"}}}, "block_order": ["c1", "c2", "c3"]},
+    "video": {"type": "lumo-video", "settings": {}}
+  },
+  "order": ["hero", "marquee", "featured", "imagetext", "categories", "video"]
+}

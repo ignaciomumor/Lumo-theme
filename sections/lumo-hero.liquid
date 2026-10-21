@@ -1,0 +1,19 @@
+<section class="hero grid-tex">
+  <div class="wrap">
+    <div class="hero-logo-wrap"><svg class="hero-logo logo" viewBox="5.2 0 520.13 225" role="img" aria-label="LUMO"><use href="#lumo"/></svg></div>
+    <h1 class="tag">{{ section.settings.lead }} <span class="hl">{{ section.settings.highlight }}</span></h1>
+    {% if section.settings.cta_label != blank %}<div class="cta-row"><a class="btn btn-blue" href="{{ section.settings.cta_link }}">{{ section.settings.cta_label }}</a></div>{% endif %}
+  </div>
+</section>
+{% schema %}
+{
+  "name": "LUMO · Hero",
+  "settings": [
+    {"type": "text", "id": "lead", "label": "Texto manuscrito", "default": "invertir en deco es"},
+    {"type": "text", "id": "highlight", "label": "Palabra destacada (roja, mayúscula)", "default": "terapia"},
+    {"type": "text", "id": "cta_label", "label": "Texto del botón", "default": "Ver catálogo →"},
+    {"type": "url", "id": "cta_link", "label": "Enlace del botón"}
+  ],
+  "presets": [{"name": "LUMO · Hero"}]
+}
+{% endschema %}
