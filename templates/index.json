@@ -66,6 +66,7 @@
     "imagetext": {
       "type": "lumo-image-text",
       "settings": {
+        "image": "shopify://shop_images/pomelli_photoshoot_image_1_1_1029.png",
         "eyebrow": "Cómo lo pensamos",
         "heading": "Objetos con los que vale la pena quedarse",
         "text": "<p>Diseñamos en 3D y producimos en nuestro taller, con materiales resistentes y buena terminación. Piezas que suman identidad a tu casa.</p>"
