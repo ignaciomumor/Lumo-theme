@@ -7,7 +7,8 @@
   endif
   assign color_opt = null
   for opt in p.options_with_values
-    if opt.name | downcase contains 'color'
+    assign opt_name = opt.name | downcase
+    if opt_name contains 'color'
       assign color_opt = opt
     endif
   endfor
