@@ -1,11 +1,129 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "sections": {
-    "hero": {"type": "lumo-hero", "settings": {"lead": "invertir en deco es", "highlight": "terapia", "cta_label": "Ver catálogo →", "cta_link": "shopify://collections/all"}},
-    "marquee": {"type": "lumo-marquee", "blocks": {"m1": {"type": "frase", "settings": {"text": "Prende, brilla, repite"}}, "m2": {"type": "frase", "settings": {"text": "Tu casa ondera, todo que ver"}}, "m3": {"type": "frase", "settings": {"text": "Decora sin pedir permiso"}}, "m4": {"type": "frase", "settings": {"text": "No combina con todo, combina contigo"}}}, "block_order": ["m1", "m2", "m3", "m4"]},
-    "featured": {"type": "lumo-featured", "settings": {"heading": "Destacados", "note": "Despacho a todo Chile · 7–10 días hábiles", "collection": "lamparas", "limit": 4}},
-    "imagetext": {"type": "lumo-image-text", "settings": {}},
-    "categories": {"type": "lumo-categories", "blocks": {"c1": {"type": "categoria", "settings": {"title": "Lámparas", "desc": "Luz de diseño", "link": "shopify://collections/lamparas"}}, "c2": {"type": "categoria", "settings": {"title": "Relojes", "desc": "Relojes de pared", "link": "shopify://collections/relojes"}}, "c3": {"type": "categoria", "settings": {"title": "Accesorios", "desc": "Objetos para tu espacio", "link": "shopify://collections/accesorios"}}}, "block_order": ["c1", "c2", "c3"]},
-    "video": {"type": "lumo-video", "settings": {}}
+    "hero": {
+      "type": "lumo-hero",
+      "settings": {
+        "lead": "",
+        "highlight": "",
+        "cta_label": "Ver catálogo →",
+        "cta_link": "shopify://collections/all"
+      }
+    },
+    "marquee": {
+      "type": "lumo-marquee",
+      "blocks": {
+        "m1": {
+          "type": "frase",
+          "settings": {
+            "text": "Prende, brilla, repite"
+          }
+        },
+        "m2": {
+          "type": "frase",
+          "settings": {
+            "text": "Tu casa ondera, todo que ver"
+          }
+        },
+        "m3": {
+          "type": "frase",
+          "settings": {
+            "text": "Decora sin pedir permiso"
+          }
+        },
+        "m4": {
+          "type": "frase",
+          "settings": {
+            "text": "No combina con todo, combina contigo"
+          }
+        }
+      },
+      "block_order": [
+        "m1",
+        "m2",
+        "m3",
+        "m4"
+      ],
+      "settings": {}
+    },
+    "featured": {
+      "type": "lumo-featured",
+      "settings": {
+        "heading": "Destacados",
+        "note": "Despacho a todo Chile · 7–10 días hábiles",
+        "collection": "lamparas",
+        "limit": 4
+      }
+    },
+    "imagetext": {
+      "type": "lumo-image-text",
+      "settings": {
+        "eyebrow": "Cómo lo pensamos",
+        "heading": "Objetos con los que vale la pena quedarse",
+        "text": "<p>Diseñamos en 3D y producimos en nuestro taller, con materiales resistentes y buena terminación. Piezas que suman identidad a tu casa.</p>"
+      }
+    },
+    "categories": {
+      "type": "lumo-categories",
+      "blocks": {
+        "c1": {
+          "type": "categoria",
+          "settings": {
+            "title": "Lámparas",
+            "desc": "Luz de diseño",
+            "link": "shopify://collections/lamparas"
+          }
+        },
+        "c2": {
+          "type": "categoria",
+          "settings": {
+            "title": "Relojes",
+            "desc": "Relojes de pared",
+            "link": "shopify://collections/relojes"
+          }
+        },
+        "c3": {
+          "type": "categoria",
+          "settings": {
+            "title": "Accesorios",
+            "desc": "Objetos para tu espacio",
+            "link": "shopify://collections/accesorios"
+          }
+        }
+      },
+      "block_order": [
+        "c1",
+        "c2",
+        "c3"
+      ],
+      "settings": {
+        "heading": "Categorías",
+        "note": "Explora por tipo de objeto"
+      }
+    },
+    "video": {
+      "type": "lumo-video",
+      "settings": {
+        "heading": "LUMO en movimiento",
+        "note": "Espacio para video",
+        "video_url": ""
+      }
+    }
   },
-  "order": ["hero", "marquee", "featured", "imagetext", "categories", "video"]
+  "order": [
+    "hero",
+    "marquee",
+    "featured",
+    "imagetext",
+    "categories",
+    "video"
+  ]
 }
